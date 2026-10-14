@@ -1,0 +1,12 @@
+services:
+  jupyter:
+    image: mcr.microsoft.com/mmlspark/release:latest
+    platform: linux/amd64
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+    command: >
+      bash -c "pip install --no-cache-dir -q -r requirements.txt &&
+      jupyter notebook --ip=0.0.0.0 --port=8888 --allow-root --no-browser"
