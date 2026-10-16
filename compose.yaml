@@ -6,7 +6,11 @@ services:
       - "8888:8888"
     volumes:
       - .:/workspace
+      - ivy2:/root/.ivy2  # SynapseML jar cache (~500MB), avoids re-download on every kernel start
     working_dir: /workspace
     command: >
       bash -c "pip install --no-cache-dir -q -r requirements.txt &&
       jupyter notebook --ip=0.0.0.0 --port=8888 --allow-root --no-browser"
+
+volumes:
+  ivy2:
